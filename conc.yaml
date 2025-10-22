@@ -1,0 +1,383 @@
+p0_zone_coords: #represents the coordinates of camera 1/front camera
+  red:
+    - [565, 60] #right bottom
+    - [561, 421] #right top
+    - [50, 435]
+  orange:
+    - [576, 360] #right bottom
+    - [512, 288]  #right top
+    - [128, 288] #left top
+    - [64, 360] #left bottom
+
+  blue:
+    - [512, 288] #right bottom
+    - [448, 240] #right top
+    - [192, 240] #left top
+    - [128, 288] #left bottom
+
+  line_thickness: 2
+  num_zones: 3 #number of zones for camera 1. Values can be 1,2 or 3
+
+p1_zone_coords: #represents the coordinates of camera 2/left camera
+  red:
+    - [640, 480] #right bottom
+    - [576, 360] #right top
+    - [64, 360] #left top
+    - [0, 480] #left bottom
+
+  orange:
+    - [576, 360] #right bottom
+    - [512, 288]  #right top
+    - [128, 288] #left top
+    - [64, 360] #left bottom
+
+  blue:
+    - [286, 24] #right bottom
+    - [84, 314] #right top
+    - [606, 310] #left top
+
+  line_thickness: 2
+  num_zones: 3 #number of zones for camera 2. Values can be 1,2 or 3
+  
+p2_zone_coords: #represents the coordinates of camera 3/left camera
+  red:
+    - [640, 480] #right bottom
+    - [576, 360] #right top
+    - [64, 360] #left top
+    - [0, 480] # left bottom
+
+     #left bottom
+  orange:
+    - [576, 360] #right bottom
+    - [512, 288]  #right top
+    - [128, 288] #left top
+    - [64, 360] #left bottom
+
+  blue:
+    - [512, 288] #right bottom
+    - [448, 240] #right top
+    - [192, 240] #left top
+    - [128, 288] #left bottom
+  line_thickness: 2
+  num_zones: 3 #number of zones for camera 3. Values can be 1,2 or 3
+
+p3_zone_coords: #represents the coordinates of camera 4/left camera
+  red:
+    - [640, 480] #right bottom
+    - [576, 360] #right top
+    - [64, 360] #left top
+    - [0, 480] #left bottom
+    
+  orange:
+    - [576, 360] #right bottom
+    - [512, 288]  #right top
+    - [128, 288] #left top
+    - [64, 360] #left bottom
+
+  blue:
+    - [512, 288] #right bottom
+    - [448, 240] #right top
+    - [192, 240] #left top
+    - [128, 288] #left bottom
+  line_thickness: 2
+  num_zones: 3 #number of zones for camera 4. Values can be 1,2 or 3
+
+
+paths: #Used in cleanup_runner for large folder and corrupt file deletion. make sure to give '/' in the end
+  path_no_rect: './forklift_temp_no_rect/'
+  path_rect: './forklift_temp_rect/'
+
+large_folder_var: #values for deletion when the folder size is large.
+  Warning_Threshold: 300 # give in GB
+  Delete_Threshold: 400 #give in GB. 400 as the current max storage is 500gb
+  Delete_percent: 0.05 # 5% given as 0.05.
+  caution_timer: 3000 #give timer in seconds. for 50 minutes fo 50*60 and give it here.
+
+corrupt_file_var:
+  corrupt_file_size: 30000 #if file size less than this value then it will be deleted.
+
+log_variables: #if log files' size exceeds the specified size then the specified count of files is deleted
+  log_path: './log_files'
+  logs_delete_count: 5
+  log_max_size: 20
+  type: 'G'
+
+fps:
+  buffer_size: 2
+  fps_prop: 30 #if fps<= 15; fps<=25->25; fps>=25->30
+
+model:
+  num_cam: 4 #Number of cameras. Values can be 1,2,3,4
+  sn: 'G6PA23200G2P'
+  mc: "ABC" #provide mac_address in ''
+  HDMI_cmd: 'xrandr -q | grep HDMI-2' #give xrandr -q and modify to HDMI-2 or DP-3 based on the active HDMI
+  image_sz_x: 150
+  image_sz_y: 50
+  overlay_img: "./.support_files/trans_white_logo.png"
+  overlay_frame: 0
+
+  #frame w,h,c. Not required to change.
+  frame_w: 640
+  frame_h: 480
+  frame_c: 3
+  frame_dtype: uint8
+
+  # Model size for ND only
+  model_width: 416
+  model_height: 416
+  save_count: 3 #Frame count for saving image. Eg: every 10th frame is saved if there is a detection
+  #for FP filtering. Upto the specified value BB is drawn but alerts not given after this value alerts are given. set value 1 (not 0) if alert is required for every detection.
+  consecutive_threshold: 3 #set value 1 (not 0) if alert is required for every detection.
+  consecutive_threshold_zone: 3 # Zone threshold for filtering: set value 1 (not 0) if alert is required for every detection.
+  consecutive_threshold_window_size : 10 # window size for filtering 
+  obstruction_threshold: 300
+  # model paths
+  model_path: './.support_files/.og/ND/nd.xml'
+  # model_path: './.support_files/.og/ED/ed.xml'
+  cached_model_path: './.support_files/.og/ND/model_cache'
+  Hibernate_cmd: 'nsenter --target 1 --mount --uts --ipc --net --pid systemctl hibernate'
+  red_audio_value: 1 #1 to enable audio alert for red zone. 0 to disable
+  org_audio_value: 2 #2 to enable audio alert for orange zone. 0 to disable
+  blue_audio_value: 3 #3 to enable audio alert for blue zone. 0 to disable
+  show_confidence: False #IF set to True. To display the confidence score of each detection on screen
+  shake_feed: False
+  frame_padding: False
+  loading_screen_time: 2
+
+
+  class_values: #person: 0, bike: 1,3
+    - 0
+
+  transformations:
+    angles: [-7, -5, 5, 7] #rotation angle for shaking
+    h_shifts: [7, -5, 5, -7] #horizontal shift values for shaking
+    v_shifts: [7, -5, 5, -7] #vertical shift values for shaking
+
+  detect_obstruction: 1 #to enable obstruction detection set to 1 elese set to 0
+  toggle_interval: 0.3 #display interval for obstruction text 
+
+serial: #Serial data is sent to the UART cable when person is in either of the zones(red/orange) and to indicate if system is healthy/unhealthy.
+  enable_brake: 1 #0: disable interlock, 1 enable interlock
+  red_signal: "1\n"
+  
+  enable_Facial: 0 #To enable facial set to 1 and to disable facial set to 0
+  face_signal: "2\n"
+  
+  enable_Failsafe: 0 #To enable failsafe set to 1 and to disable failsafe set to 0
+  healthy_signal: "2\n"
+  unhealthy_signal: "9\n"
+  
+  serial_timeout: 0.061
+  retry_delay_after2U: 3
+  retry_after_2U: 3
+  #UART cable port name
+  port_names: 
+    - '/dev/ttyUSB0'
+    - '/dev/ttyUSB1'
+    - '/dev/ttyUSB2'
+  baud_rate: 9600 #baud rate as specified by h/w team
+  max_retries: 3 #retry count if serial data is not sent.
+  valid_ack_values: #expected ack values.
+    -6
+    -7
+    -9
+  serialDataFilterEnable: 1 # 1- Enable Serial data filter
+  serialDataConsecutive_threshold_window_size: 30 #400 # window size for Serial data filtering 
+  serialDataConsecutive_threshold: 9 #50 #set value 1 (not 0) if alert is required for every detection.
+
+  U_error_size_x: 130
+  U_error_size_y: 130
+  U_window_place_x: 1900
+  U_window_place_y: 1000
+
+access_paths:
+  current_path: '/usr/src/app' #Do not give '/' at end
+  check_monitor_path: "./check_monitor_file.bin" 
+  execute_as_executable: True #change to true and modify check_monitor path while running exe
+  err_file: "err.txt" #set as err_<nuc_name>. Same should be in bash for error redirection
+  mac_fetch_path: "/sys/class/net/enp89s0/address"
+
+  #Saving paths
+  log_path: "./log_files/"
+  img_folder_rect: "./forklift_temp_rect"
+  img_folder_norect: "./forklift_temp_no_rect"
+  suspend_file: "suspend_check.txt"
+  start_time_file: "start_time.txt"
+  encrypt_img_folder_rect: "./encrypt_forklift_temp_rect"
+  encrypt_img_folder_norect: "./encrypt_forklift_temp_no_rect"
+
+  #File access paths
+  red_audio: './.support_files/female_human_loud.wav'
+  org_audio: './.support_files/orange_final.wav'
+  blue_audio: './.support_files/blue_final.wav'
+  interconnection_fail_sound: './.support_files/Buzzer_high.wav'
+
+  dropbox_upload_path: './dropbox_upload.bin' 
+  execute_dropbox_as_executable: True #change to True and modify dropbox_upload_path while running exe
+  dropbox_display_folder: "./encrypt_forklift_temp_rect"
+  dropbox_upload_directory: "./upload_folder/"
+
+cloud_dashboard:
+  encryption: False #Values: True or False. True to encrypt and save.
+  dropbox_upload: False #If this(dropbox_upload) is set to True, then set encryption also to True always
+  dropbox_upload_time: 7200 #interval between dropbox uploads(in seconds)
+  DRT : "gabRKcfvD94AAAAAAAAAAdNZl-kA4rchiXeQr9_2_UgxU-Z6n5Unrb5qk-PrICGt"
+  DCI : "T9ZoAYAjc65Aeq4cXpdBGA=="
+  DCS : "CA9lg6MLjj7QcJacUlBxuA=="
+  CBS : 16
+
+background_p0:
+  threshold: 0.5 #Model threshold. required threshold/10 needs to be given
+  window_display_name: 'FrontCamera' #display name
+  save_at_folder: 'FrontCamera' #folder at which images needs to be saved
+  overlay_pos_x: 150 #if rotated (rotate is 1 or 2) then adjust y to adjust height and x to adjust horizontal position.
+  overlay_pos_y: 430
+
+  threshold_pos_x: 200
+  threshold_pos_y: 50
+  fps_pos_x: 200
+  fps_pos_y: 30
+  obstruction_position_x: 440 #200
+  obstruction_position_y: 100 #70
+  #window place and window size. 
+  window_place_x: 0
+  window_place_y: 0
+  window_size_x: 1024
+  window_size_y: 380
+
+  #for landscape
+  # window_place_x: 380
+  # window_place_y: 0
+  # window_size_x: 518
+  # window_size_y: 335
+  ev_name: 'Error Front camera'
+  pass_as_gray: 3 #to pass as gray set value as 1, to pass as color set this value to 3. s
+
+  flip: 0 #Flip. Values:0,1. Set to 0 for no flip and 1 for flip
+  rotate: 0 #Rotate. Values:0,1,2,3. 0: no rotate, 1: rotate 90 degree counter clockwise, 2: rotate 90degree clockwise, 3: rotate 180 degrees
+
+
+background_p1:
+  threshold: 0.7 #Model threshold. required threshold/10 needs to be given
+  window_display_name: 'LeftCamera' #display name
+  save_at_folder: 'LeftCamera' #folder at which images needs to be saved
+  overlay_pos_x: 400 #if rotated (rotate is 1 or 2) then adjust y to adjust height and x to adjust horizontal position.
+  overlay_pos_y: 590
+
+  threshold_pos_x: 630
+  threshold_pos_y: 50
+  fps_pos_x: 630
+  fps_pos_y: 30
+  obstruction_position_x: 640 #630
+  obstruction_position_y: 320 #70
+  #window place and window size. 
+  window_place_x: 0
+  window_place_y: 445
+  window_size_x: 430
+  window_size_y: 380
+  #for landscape
+  # window_place_x: 0
+  # window_place_y: 0
+  # window_size_x: 380
+  # window_size_y: 960
+  ev_name: 'Error Left camera'
+  pass_as_gray: 3 #to pass as gray set value as 1, to pass as color set this value to 3. 
+
+  flip: 0 #Flip. Set to 0 for no flip and 1 for flip
+  rotate: 1 #Rotate. Values:0,1,2,3. 0: no rotate, 1: rotate 90 degree counter clockwise, 2: rotate 90degree clockwise, 3: rotate 180 degrees
+
+background_p2:
+  threshold: 0.5 #Model threshold. required threshold/10 needs to be given
+  window_display_name: 'RightCamera' #display name
+  save_at_folder: 'RightCamera' #folder at which images needs to be saved
+  overlay_pos_x: 400 #if rotated (rotate is 1 or 2) then adjust y to adjust height and x to adjust horizontal position.
+  overlay_pos_y: 590
+
+  threshold_pos_x: 300
+  threshold_pos_y: 50
+  fps_pos_x: 300
+  fps_pos_y: 30
+  obstruction_position_x: 400
+  obstruction_position_y: 320
+  #window place and window size. 
+  window_place_x: 650
+  window_place_y: 445
+  window_size_x: 430
+  window_size_y: 380
+  #for landscape
+  # window_place_x: 920
+  # window_place_y: 0
+  # window_size_x: 380
+  # window_size_y: 960
+  ev_name: 'Error Right camera'
+  pass_as_gray: 3 #to pass as gray set value as 1, to pass as color set this value to 3. 
+
+  flip: 0 #Flip. Set to 0 for no flip and 1 for flip
+  rotate: 2 #Rotate. Values:0,1,2,3. 0: no rotate, 1: rotate 90 degree counter clockwise, 2: rotate 90degree clockwise, 3: rotate 180 degrees
+
+
+background_p3:
+  threshold: 0.5 #Model threshold. required threshold/10 needs to be given
+  window_display_name: 'BackCamera' #display name
+  save_at_folder: 'BackCamera' #folder at which images needs to be saved
+  overlay_pos_x: 150 #if rotated (rotate is 1 or 2) then adjust y to adjust height and x to adjust horizontal position.
+  overlay_pos_y: 430
+
+  threshold_pos_x: 200
+  threshold_pos_y: 50
+  fps_pos_x: 200
+  fps_pos_y: 30
+  obstruction_position_x: 440
+  obstruction_position_y: 100
+  #window place and window size. 
+  window_place_x: 0
+  window_place_y: 880
+  window_size_x: 1024
+  window_size_y: 380
+  
+  #for landscape
+  # window_place_x: 380
+  # window_place_y: 760
+  # window_size_x: 518
+  # window_size_y: 335
+  ev_name: 'Error Back camera'
+  pass_as_gray: 3 #to pass as gray set value as 1, to pass as color set this value to 3. 
+
+  flip: 1 #Flip. Set to 0 for no flip and 1 for flip
+  rotate: 0 #Rotate. Values:0,1,2,3. 0: no rotate, 1: rotate 90 degree counter clockwise, 2: rotate 90degree clockwise, 3: rotate 180 degrees
+
+
+# Port Mapping for camera 
+cam_id_port_position:
+  front: (usb-00000014.0-1) 
+  left: (usb-00000014.0-2)
+  right: (usb-00000014.0-3)
+  back:   (usb-00000014.0-7)
+
+# Camera Position Configure 
+camera_pos:
+  front: 0
+  left: 1
+  right: 2
+  back: 3
+
+4C_error_handling:
+  timer: 12 # Number of tries (5 min = 300 sec -> 300/5 = 60)
+  interval_time: 5 # Sleeping time between every try 
+
+# CLASS_NAMES : [
+#         "person", "bicycle", "car", "motorcycle", "airplane", "bus",
+#         "train", "truck", "boat", "traffic light", "fire hydrant",
+#         "stop sign", "parking meter", "bench", "bird", "cat", "dog",
+#         "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe",
+#         "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee",
+#         "skis", "snowboard", "sports ball", "kite", "baseball bat",
+#         "baseball glove", "skateboard", "surfboard", "tennis racket",
+#         "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl",
+#         "banana", "apple", "sandwich", "orange", "broccoli", "carrot",
+#         "hot dog", "pizza", "donut", "cake", "chair", "couch",
+#         "potted plant", "bed", "dining table", "toilet", "tv", "laptop",
+#         "mouse", "remote", "keyboard", "cell phone", "microwave", "oven",
+#         "toaster", "sink", "refrigerator", "book", "clock", "vase",
+#         "scissors", "teddy bear", "hair drier", "toothbrush"
+#    ]
