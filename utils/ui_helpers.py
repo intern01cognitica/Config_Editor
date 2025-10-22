@@ -41,7 +41,7 @@ def show_loading(message="Please wait..."):
     layout.add_widget(message_label)
 
     def open_popup(*_):
-        popup_width = message_label.texture_size[0] + dp(90)
+        popup_width = message_label.texture_size[0] + dp(80)
         popup_height = message_label.texture_size[1] + dp(120)
         layout.size = (popup_width, popup_height)
 

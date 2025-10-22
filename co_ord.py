@@ -130,11 +130,6 @@ except Exception as e:
 
 original_size = (original_frame.shape[1], original_frame.shape[0])  # (width, height)
 cv2.namedWindow(window_name, flags=cv2.WINDOW_GUI_NORMAL + cv2.WINDOW_AUTOSIZE)
-# cv2.resizeWindow(window_name, size_x, size_y)
-# import subprocess, time, platform
-# if platform.system() == "Linux":
-#     time.sleep(0.5)
-#     subprocess.call(["wmctrl", "-r", window_name, "-b", "add,above"])
 
 
 

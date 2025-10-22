@@ -1,125 +1,255 @@
-camera_pos: 0                                                                               #For M series (0,2,4,6), for s series url.
-cam_id: 0 #For M series (0-3) For s series (0-5)
+camera_pos: "rtsp://admin:Cogn!@2023@192.168.1.48:554/Streaming/channels/102/"              #For M series (0,2,4,6), for s series url.
+cam_id: 1 #For M series (0-3) For s series (0-5)
 
 # ex: M series : cam_pos=2 ,cam_id=1  map cam_pos(0,2,4,6) with  cam_id (0-3)
 # For both S andM-series flip=0 irrespective of the camera(all cams)
 
-# ---------- M-series  ----------
-# ---------- BACKGROUND POSITIONS ----------
-background_p0:
+# # ---------- M-series  ----------
+# # ---------- BACKGROUND POSITIONS ----------
+# background_p0:
+#   window_place_x: 0
+#   window_place_y: 0
+#   window_size_x: 1024
+#   window_size_y: 380
+#   flip: 0
+#   rotate: 0
+
+# background_p1:
+#   window_place_x: 0
+#   window_place_y: 445
+#   window_size_x: 430
+#   window_size_y: 380
+#   flip: 0
+#   rotate: 1
+
+# background_p2:
+#   window_place_x: 650
+#   window_place_y: 445
+#   window_size_x: 430
+#   window_size_y: 380
+#   flip: 0
+#   rotate: 2
+
+# background_p3:
+#   window_place_x: 0
+#   window_place_y: 880
+#   window_size_x: 1024
+#   window_size_y: 380
+#   flip: 0
+#   rotate: 0
+
+
+# # ---------- ZONE COORDINATES ----------
+# p0_zone_coords:  # Front
+#   red:
+#     - [640, 480]
+#     - [576, 360]
+#     - [64, 360]
+#     - [0, 480]
+
+
+#   orange:
+#     - [576, 360]
+#     - [512, 288]
+#     - [128, 288]
+#     - [64, 360]
+#   blue:
+#     - [512, 288]
+#     - [448, 240]
+#     - [192, 240]
+#     - [128, 288]
+#   line_thickness: 2
+#   num_zones: 3
+
+# p1_zone_coords:   # Left 
+#   red:
+#     - [640, 480]
+#     - [576, 360]
+#     - [64, 360]
+#     - [0, 480]
+
+
+
+#   orange:
+#     - [576, 360]
+#     - [512, 288]
+#     - [128, 288]
+#     - [64, 360]
+#   blue:
+#     - [512, 288]
+#     - [448, 240]
+#     - [192, 240]
+#     - [128, 288]
+#   line_thickness: 2
+#   num_zones: 3
+
+# p2_zone_coords:  # Right
+#   red:
+#     - [640, 480]
+#     - [576, 360]
+#     - [64, 360]
+#     - [0, 480]
+
+#   orange:
+#     - [576, 360]
+#     - [512, 288]
+#     - [128, 288]
+#     - [64, 360]
+#   blue:
+#     - [512, 288]
+#     - [448, 240]
+#     - [192, 240]
+#     - [128, 288]
+#   line_thickness: 2
+#   num_zones: 3
+
+# p3_zone_coords:  # Back
+#   red:
+#     - [640, 480]
+#     - [576, 360]
+#     - [64, 360]
+#     - [0, 480]
+#   orange:
+#     - [576, 360]
+#     - [512, 288]
+#     - [128, 288]
+#     - [64, 360]
+#   blue:
+#     - [512, 288]
+#     - [448, 240]
+#     - [192, 240]
+#     - [128, 288]
+#   line_thickness: 2
+#   num_zones: 3
+
+
+# ======================== S SERIES CAMERAS (6) ========================
+
+# --- Backgrounds for 6 cams ---
+background_p0:  # S Cam 1
   window_place_x: 0
   window_place_y: 0
-  window_size_x: 1024
-  window_size_y: 380
+  window_size_x: 640
+  window_size_y: 490
   flip: 0
   rotate: 0
 
-background_p1:
-  window_place_x: 0
-  window_place_y: 445
-  window_size_x: 430
-  window_size_y: 380
+background_p1:  # S Cam 2
+  window_place_x: 640
+  window_place_y: 0
+  window_size_x: 640
+  window_size_y: 490
   flip: 0
-  rotate: 1
+  rotate: 0
 
-background_p2:
-  window_place_x: 650
-  window_place_y: 445
-  window_size_x: 430
-  window_size_y: 380
+background_p2:  # S Cam 3
+  window_place_x: 1480
+  window_place_y: 0
+  window_size_x: 640
+  window_size_y: 490
   flip: 0
-  rotate: 2
+  rotate: 0
 
-background_p3:
+background_p3:  # S Cam 4
   window_place_x: 0
-  window_place_y: 880
-  window_size_x: 1024
-  window_size_y: 380
+  window_place_y: 552
+  window_size_x: 640
+  window_size_y: 490
+  flip: 0
+  rotate: 0
+
+background_p4:  # S Cam 5
+  window_place_x: 640
+  window_place_y: 552
+  window_size_x: 640
+  window_size_y: 490
+  flip: 0
+  rotate: 0
+
+background_p5:  # S Cam 6
+  window_place_x: 1480
+  window_place_y: 552
+  window_size_x: 640
+  window_size_y: 490
   flip: 0
   rotate: 0
 
 
-# ---------- ZONE COORDINATES ----------
-p0_zone_coords:  # Front
-  red:
-    - [565, 60] #right bottom
-    - [561, 421] #right top
-    - [50, 435]
-  orange:
-    - [576, 360] #right bottom
-    - [512, 288]  #right top
-    - [128, 288] #left top
-    - [64, 360] #left bottom
+# --- S series zones (as you provided) ---
+p0_zone_coords:  # S Cam 1
+  red:    #left (640,480b/0t) right(0,0t/480b)
+    - [640, 480]  # red_left_bottom
+    - [630, 0]
+    - [300, 0]
+    - [300, 300]
+    - [500, 480]
 
-  blue:
-    - [512, 288] #right bottom
-    - [448, 240] #right top
-    - [192, 240] #left top
-    - [128, 288] #left bottom
 
+  orange: []
+  blue: []
   line_thickness: 2
-  num_zones: 3 #number of zones for camera 1. Values can be 1,2 or 3
+  num_zones: 1
 
-p1_zone_coords:   # Left 
-  red:
-    - [640, 480] #right bottom
-    - [576, 360] #right top
-    - [64, 360] #left top
-    - [0, 480] #left bottom
 
-  orange:
-    - [576, 360] #right bottom
-    - [512, 288]  #right top
-    - [128, 288] #left top
-    - [64, 360] #left bottom
+p1_zone_coords:  # S Cam 2
+  red:    #left (640,480b/0t) right(0,0t/480b)
+    - [104, 107]  # red_left_bottom
+    - [103, 457]
+    - [620, 439]
 
-  blue:
-    - [286, 24] #right bottom
-    - [84, 314] #right top
-    - [606, 310] #left top
-
+  orange: []
+  blue: []
   line_thickness: 2
-  num_zones: 3 #number of zones for camera 2. Values can be 1,2 or 3
-p2_zone_coords:  # Right
-  red:
-    - [640, 480] #right bottom
-    - [576, 360] #right top
-    - [64, 360] #left top
-    - [0, 480] # left bottom
+  num_zones: 1
 
-     #left bottom
-  orange:
-    - [576, 360] #right bottom
-    - [512, 288]  #right top
-    - [128, 288] #left top
-    - [64, 360] #left bottom
 
-  blue:
-    - [512, 288] #right bottom
-    - [448, 240] #right top
-    - [192, 240] #left top
-    - [128, 288] #left bottom
+p2_zone_coords:  # S Cam 3
+  red:    #left (640,480b/0t) right(0,0t/480b)
+    - [640, 480]  # red_left_bottom
+    - [600, 0]
+    - [0, 0]
+    - [0, 480]
+
+  orange: []
+  blue: []
   line_thickness: 2
-  num_zones: 3 #number of zones for camera 3. Values can be 1,2 or 3
+  num_zones: 1
 
-p3_zone_coords:  # Back
-  red:
-    - [640, 480] #right bottom
-    - [576, 360] #right top
-    - [64, 360] #left top
-    - [0, 480] #left bottom
-  orange:
-    - [576, 360] #right bottom
-    - [512, 288]  #right top
-    - [128, 288] #left top
-    - [64, 360] #left bottom
 
-  blue:
-    - [512, 288] #right bottom
-    - [448, 240] #right top
-    - [192, 240] #left top
-    - [128, 288] #left bottom
+p3_zone_coords:  # S Cam 4
+  red:    #left (640,480b/0t) right(0,0t/480b)
+    - [640, 480]  # red_left_bottom
+    - [600, 0]
+    - [0, 0]
+    - [0, 480]
+  orange: []
+  blue: []
   line_thickness: 2
-  num_zones: 3 #number of zones for camera 4. Values can be 1,2 or 3
+  num_zones: 1
 
+
+p4_zone_coords:  # S Cam 5
+  red:    #left (640,480b/0t) right(0,0t/480b)
+    - [640, 480]  # red_left_bottom
+    - [600, 0]
+    - [0, 0]
+    - [0, 480]
+
+  orange: []
+  blue: []
+  line_thickness: 2
+  num_zones: 1
+
+
+p5_zone_coords:  # S Cam 6
+  red:    #left (640,480b/0t) right(0,0t/480b)
+    - [640, 480]  # red_left_bottom
+    - [600, 0]
+    - [0, 0]
+    - [0, 480]
+
+  orange: []
+  blue: []
+  line_thickness: 2
+  num_zones: 1
 

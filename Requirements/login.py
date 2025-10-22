@@ -71,22 +71,7 @@ class LoginScreen(Screen):
         self.add_widget(layout)
 
     def authenticate(self, instance):
-        username = self.username.text.strip()
-        password = self.password.text.strip()
-
-        # ✅ Check for missing fields first
-        if not username and not password:
-            show_popup("Please enter username and password")
-            return
-        elif not username:
-            show_popup("Please enter username")
-            return
-        elif not password:
-            show_popup("Please enter password")
-            return
-
-        # ✅ Then validate credentials
-        if username == "cai-admin" and password == "Cogn!@2023":
+        if self.username.text == "cai-admin" and self.password.text == "Cogn!@2023":
             self.manager.get_screen("admin").load_data()
             self.manager.current = "admin"
         else:

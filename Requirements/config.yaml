@@ -11,9 +11,10 @@ p0_zone_coords: #represents the coordinates of camera 1
 
 p1_zone_coords: #represents the coordinates of camera 2
   points: #left (640,480b/0t) right(0,0t/480b)
-    - [104, 107]  # red_left_bottom
-    - [103, 457] 
-    - [620, 439]
+    - [640, 480]  # red_left_bottom
+    - [600, 0] 
+    - [0, 0]
+    - [0, 480]   
 
   line_thickness: 2
 
@@ -238,7 +239,7 @@ background_p1:
   window_size_y: 490
 
   ev_name: 'Error Camera 2'
-  ip_address: "192.168.1.48:554/Streaming/channels/102/"
+  ip_address: "192.168.1.45:554/Streaming/channels/102/"
 
   pass_as_gray: 3 #to pass as gray set value as 1, to pass as color set this value to 3.
 
